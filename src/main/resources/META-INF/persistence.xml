@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2"
+             xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+    <persistence-unit name="hello">
+        <properties>
+            <!-- 필수 속성 -->
+            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+            <property name="javax.persistence.jdbc.user" value="sa"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/test"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+
+            <!-- 옵션 -->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.use_sql_comments" value="true"/>
+            <!--아래 기능은 모았다가 한 방에 db에 쿼리를 보내는 버퍼링 기술-->
+            <property name="hibernate.jdbc.batch_size" value="10"/>
+            <!--아래 기능은 데이터베이스 스키마 자동 생성 - 속성 (주로 테스트 코드 쓸 때 사용)-->
+            <!--value 값에 "create", "create-drop", "update", "validate", "none"-->
+            <!-- 운영 장비에는 절대 create, create-drop, update 사용하면 안된다.-->
+            <!-- 개발 초기 단계(혼자 할 때)에는 create, update 를 사용하면 됨-->
+            <!-- 테스트 서버(여러명 중간 단계)부터는 update 또는 validate를 사용-->
+            <!-- 스테이징과 운영 서버는 validate 또는 none-->
+            <property name="hibernate.hbm2ddl.auto" value="create" />
+        </properties>
+    </persistence-unit>
+</persistence>
