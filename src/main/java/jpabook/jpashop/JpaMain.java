@@ -1,6 +1,7 @@
 package jpabook.jpashop;
 
 import jpabook.jpashop.domain.Order;
+import jpabook.jpashop.domain.OrderItem;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -18,6 +19,14 @@ public class JpaMain {
         tx.begin();
 
         try {
+            
+            Order order = new Order();
+            // order.addOrderItem(new OrderItem());
+
+            OrderItem orderItem = new OrderItem();
+            orderItem.setOrder(order);
+
+            em.persist(orderItem); // 양방향 연관 관계가 아니라도 개발 하는데 문제가 없다.
 
             tx.commit();
         } catch (Exception e) {

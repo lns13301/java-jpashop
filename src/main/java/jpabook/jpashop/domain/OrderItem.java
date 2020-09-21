@@ -48,6 +48,10 @@ public class OrderItem {
         this.count = count;
     }
 
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
     private int orderPrice;
     private int count;
 }
